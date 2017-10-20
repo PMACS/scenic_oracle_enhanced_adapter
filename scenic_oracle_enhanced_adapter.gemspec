@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.email         = ['margheim@mail.med.upenn.edu']
 
   spec.summary       = 'OracleEnhanced adapter for Scenic gem.'
-  spec.homepage      = 'TODO'
+  spec.homepage      = 'https://github.com/PMACS/scenic_oracle_enhanced_adapter'
   spec.license       = 'MIT'
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
