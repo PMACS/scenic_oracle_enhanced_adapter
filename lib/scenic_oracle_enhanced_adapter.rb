@@ -1,2 +1,2 @@
 require 'active_record'
-require 'scenic/adapters/orace_enhanced'
+require 'scenic/adapters/oracle_enhanced'
