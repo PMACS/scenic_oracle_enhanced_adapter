@@ -13,7 +13,7 @@ module Scenic
       end
 
       def create_view(name, sql_definition)
-        execute "CREATE VIEW #{quote_table_name(name)} AS #{sql_definition};"
+        execute "CREATE VIEW #{quote_table_name(name)} AS #{sql_definition}"
       end
 
       def update_view(name, sql_definition)
@@ -22,7 +22,7 @@ module Scenic
       end
 
       def replace_view(name, sql_definition)
-        execute "CREATE OR REPLACE VIEW #{quote_table_name(name)} AS #{sql_definition};"
+        execute "CREATE OR REPLACE VIEW #{quote_table_name(name)} AS #{sql_definition}"
       end
 
       def drop_view(name)
@@ -30,7 +30,7 @@ module Scenic
       end
 
       def create_materialized_view(name, sql_definition)
-        execute "CREATE MATERIALIZED VIEW #{quote_table_name(name)} AS #{sql_definition};"
+        execute "CREATE MATERIALIZED VIEW #{quote_table_name(name)} AS #{sql_definition}"
       end
 
       def update_materialized_view(name, sql_definition)
@@ -41,16 +41,16 @@ module Scenic
       end
 
       def drop_materialized_view(name)
-        execute "DROP MATERIALIZED VIEW #{quote_table_name(name)};"
+        execute "DROP MATERIALIZED VIEW #{quote_table_name(name)}"
       end
 
       def refresh_materialized_view(name, concurrently: false, cascade: false)
         # refresh_dependencies_for(name) if cascade
 
         if concurrently
-          execute "REFRESH MATERIALIZED VIEW CONCURRENTLY #{quote_table_name(name)};"
+          execute "REFRESH MATERIALIZED VIEW CONCURRENTLY #{quote_table_name(name)}"
         else
-          execute "REFRESH MATERIALIZED VIEW #{quote_table_name(name)};"
+          execute "REFRESH MATERIALIZED VIEW #{quote_table_name(name)}"
         end
       end
 
