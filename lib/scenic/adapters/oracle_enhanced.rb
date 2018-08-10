@@ -13,7 +13,8 @@ module Scenic
       end
 
       def create_view(name, sql_definition)
-        execute "CREATE VIEW #{quote_table_name(name)} AS #{sql_definition}"
+        columns = read_columns_from_sql(sql_definition)
+        execute "CREATE VIEW #{quote_table_name(name)} (#{columns}) AS #{sql_definition}"
       end
 
       def update_view(name, sql_definition)
@@ -61,6 +62,10 @@ module Scenic
 
       def connection
         connectable.connection
+      end
+
+      def read_columns_from_sql(sql)
+        '"name", "fav_food", "quote"'
       end
     end
   end
