@@ -44,7 +44,7 @@ module Scenic
         end
 
         def to_scenic_view(result)
-          namespace, viewname = result[2], result[1]
+          namespace, viewname = result['namespace'], result['viewname']
 
           if namespace != 'SYS'
             namespaced_viewname = "#{oracle_identifier(namespace)}.#{oracle_identifier(viewname)}"
