@@ -4,6 +4,7 @@ module Scenic
       class Views
         def initialize(connection)
           @connection = connection
+          @current_schema = fetch_current_schema
         end
 
         def all
@@ -12,7 +13,15 @@ module Scenic
 
         private
 
-        attr_reader :connection
+        attr_reader :connection,
+                    :current_schema
+
+        def fetch_current_schema
+          ActiveRecord::Base.connection
+                            .execute("select sys_context('userenv', 'current_schema') from dual")
+                            .fetch
+                            .first
+        end
 
         def views_from_oracle
           # NOTE: Oracle cannot `UNION` on `LONG` fields,
