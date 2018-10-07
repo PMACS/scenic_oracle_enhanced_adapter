@@ -26,7 +26,7 @@ module Scenic
       end
 
       def drop_view(name)
-        execute "DROP VIEW #{quote_table_name(name)};"
+        execute "DROP VIEW #{quote_table_name(name)}"
       end
 
       def create_materialized_view(name, sql_definition)
