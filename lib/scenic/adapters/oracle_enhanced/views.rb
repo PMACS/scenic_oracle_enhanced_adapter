@@ -70,7 +70,6 @@ module Scenic
           # We don't know where this return value is used so, until we have
           # an actual use case for a name that makes it past this guard, we
           # are going to leave this as it is.
-          return name
           return name if name =~ /^[a-zA-Z_][a-zA-Z0-9_]*$/
 
           connection.quote_column_name_or_expression(name)
