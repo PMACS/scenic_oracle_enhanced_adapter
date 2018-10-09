@@ -14,7 +14,7 @@ And then execute:
 
     $ bundle
 
-The add a Scenic initializer (or modify your existing initializer) to make Scenic use this adapter:
+Then add a Scenic initializer (or modify your existing initializer) to make Scenic use this adapter:
 
 ```
 # config/initializers/scenic.rb
