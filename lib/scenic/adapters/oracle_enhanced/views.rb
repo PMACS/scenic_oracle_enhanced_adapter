@@ -34,12 +34,14 @@ module Scenic
                    owner      AS NAMESPACE,
                    query      AS DEFINITION
             FROM   all_mviews
+            WHERE owner = '#{@current_schema}'
             UNION ALL
             SELECT 'v'       AS KIND,
                    view_name AS VIEWNAME,
                    owner     AS NAMESPACE,
                    text      AS DEFINITION
             FROM   all_views
+            WHERE owner = '#{@current_schema}'
           SQL
         end
 
@@ -60,6 +62,17 @@ module Scenic
         end
 
         def oracle_identifier(name)
+          # We've copied this method from the PostgreSQL Scenic adapter.
+          # If the name makes it past the guard clause, the quoted Oracle identifiers
+          # will end up causing the OEA's `describe` method to generate
+          # invalid, improperly quoted object names.
+          #
+          # We don't know where this return value is used so, until we have
+          # an actual use case for a name that makes it past this guard, we
+          # are going to leave this as it is.
+          return name
+          return name if name =~ /^[a-zA-Z_][a-zA-Z0-9_]*$/
+
           connection.quote_column_name_or_expression(name)
         end
       end
