@@ -25,7 +25,8 @@ module Scenic
         execute "CREATE OR REPLACE VIEW #{quote_table_name(name)} AS #{sql_definition}"
       end
 
-      def drop_view(name)
+      # `_sql_definition` argument allows `create_view` to be reversed in a migration rollback
+      def drop_view(name, _sql_definition = nil)
         execute "DROP VIEW #{quote_table_name(name)}"
       end
 
@@ -40,7 +41,8 @@ module Scenic
         # end
       end
 
-      def drop_materialized_view(name)
+      # `_sql_definition` argument allows `create_materialized_view` to be reversed in a migration rollback
+      def drop_materialized_view(name, _sql_definition = nil)
         execute "DROP MATERIALIZED VIEW #{quote_table_name(name)}"
       end
 
