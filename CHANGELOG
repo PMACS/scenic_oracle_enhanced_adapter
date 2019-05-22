@@ -1,0 +1,2 @@
+v0.0.2
+  - Make `create_view` and `create_materialized_view` reversible
