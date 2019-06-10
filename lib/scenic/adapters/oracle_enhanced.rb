@@ -57,7 +57,7 @@ module Scenic
       end
       
       def create_pk_for_view(object:, key: 'id')
-        key_name = [object.to_s.split('.').last, key, 'pk'].join('_')
+        key_name = [object.to_s.split('.').last, key.to_s, 'pk'].join('_')
         suppress_messages do
           execute <<-SQL
           ALTER VIEW #{object} ADD CONSTRAINT #{key_name} PRIMARY KEY (#{key}) DISABLE
