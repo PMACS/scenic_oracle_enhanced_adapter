@@ -59,12 +59,13 @@ module Scenic
       def create_pk_for_view(object:, key: 'id')
         key_name = [object.to_s.split('.').last, key.to_s, 'pk'].join('_')
         suppress_messages do
-          execute <<-SQL
-          ALTER VIEW #{object} ADD CONSTRAINT #{key_name} PRIMARY KEY (#{key}) DISABLE
-          SQL
+          say_with_time do
+            execute <<-SQL
+            ALTER VIEW #{object} ADD CONSTRAINT #{key_name} PRIMARY KEY (#{key}) DISABLE
+            SQL
+            "Primary key #{key_name} created for #{object}."
+          end
         end
-
-        say 'Primary key created.', true
       end
 
       private
