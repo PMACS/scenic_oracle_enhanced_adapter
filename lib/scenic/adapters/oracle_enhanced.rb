@@ -55,6 +55,17 @@ module Scenic
           execute "REFRESH MATERIALIZED VIEW #{quote_table_name(name)}"
         end
       end
+      
+      def create_pk_for_view(object:, key: 'id')
+        key_name = [object.to_s.split('.').last, key, 'pk'].join('_')
+        suppress_messages do
+          execute <<-SQL
+          ALTER VIEW #{object} ADD CONSTRAINT #{key_name} PRIMARY KEY (#{key}) DISABLE
+          SQL
+        end
+
+        say 'Primary key created.', true
+      end
 
       private
 
