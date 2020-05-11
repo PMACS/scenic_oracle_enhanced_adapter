@@ -35,7 +35,7 @@ module Scenic
           CREATE MATERIALIZED VIEW #{quote_table_name(name)}
           #{'BUILD DEFERRED' if no_data}
           AS
-          #{sql_definition}"
+          #{sql_definition}
         SQL
       end
 
