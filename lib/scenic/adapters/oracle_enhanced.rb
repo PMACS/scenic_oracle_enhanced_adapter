@@ -33,8 +33,7 @@ module Scenic
       def create_materialized_view(name, sql_definition, no_data: false)
         execute <<~SQL
           CREATE MATERIALIZED VIEW #{quote_table_name(name)}
-          #{'BUILD DEFERRED' if no_data}
-          AS
+          #{"BUILD DEFERRED\n" if no_data}AS
           #{sql_definition}
         SQL
       end
