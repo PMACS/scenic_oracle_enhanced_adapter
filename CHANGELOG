@@ -1,2 +1,4 @@
 v0.0.2
   - Make `create_view` and `create_materialized_view` reversible
+v0.0.3
+  - Allow `create materialized view` to create a view without running it
