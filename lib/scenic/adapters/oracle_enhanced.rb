@@ -30,14 +30,18 @@ module Scenic
         execute "DROP VIEW #{quote_table_name(name)}"
       end
 
-      def create_materialized_view(name, sql_definition)
-        execute "CREATE MATERIALIZED VIEW #{quote_table_name(name)} AS #{sql_definition}"
+      def create_materialized_view(name, sql_definition, no_data: false)
+        execute <<~SQL
+          CREATE MATERIALIZED VIEW #{quote_table_name(name)}
+          #{"BUILD DEFERRED\n" if no_data}AS
+          #{sql_definition}
+        SQL
       end
 
-      def update_materialized_view(name, sql_definition)
+      def update_materialized_view(name, sql_definition, no_data: false)
         # IndexReapplication.new(connection: connection).on(name) do
           drop_materialized_view(name)
-          create_materialized_view(name, sql_definition)
+          create_materialized_view(name, sql_definition, no_data: no_data)
         # end
       end
 
